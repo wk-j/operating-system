@@ -3,8 +3,11 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/vsts/pipelines/languages/dotnet-core
 
+# pool:
+#   vmImage: 'Ubuntu 16.04'
+
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'vs2017-win2016'
 
 variables:
   buildConfiguration: 'Release'
@@ -13,18 +16,21 @@ variables:
 
 steps:
 
-- script: |
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-    sudo apt install apt-transport-https
-    echo "deb https://download.mono-project.com/repo/ubuntu stable-xenial main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-    sudo apt update
-    sudo apt-get -yq install mono-devel
-  displayName: Installing mono
+# - script: |
+#     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+#     sudo apt install apt-transport-https
+#     echo "deb https://download.mono-project.com/repo/ubuntu stable-xenial main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+#     sudo apt update
+#     sudo apt-get -yq install mono-devel
+#   displayName: Installing mono
 
 - script: dotnet tool install -g Cake.Tool
   displayName: "Install Cake"
 
-- script: ~/.dotnet/tools/dotnet-cake -target=Pack
+# - script: ~/.dotnet/tools/dotnet-cake -target=Pack
+#   displayName: 'Build with Cake'
+
+- script: '%USERPROFILE%/.dotnet/tools/dotnet-cake -target=Pack'
   displayName: 'Build with Cake'
 
 - task: NuGetCommand@2
