@@ -6,8 +6,14 @@
 # pool:
 #   vmImage: 'Ubuntu 16.04'
 
+# pool:
+#   vmImage: 'vs2017-win2016'
+
+# pool:
+#   vmImage: 'windows-2019'
+
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'macOS-10.13'
 
 variables:
   buildConfiguration: 'Release'
@@ -23,11 +29,11 @@ steps:
 - script: dotnet tool install -g Cake.Tool
   displayName: "Install Cake"
 
-# - script: ~/.dotnet/tools/dotnet-cake -target=Pack
-#   displayName: 'Build with Cake'
-
-- script: '%USERPROFILE%/.dotnet/tools/dotnet-cake -target=Pack'
+- script: ~/.dotnet/tools/dotnet-cake -target=Pack
   displayName: 'Build with Cake'
+
+# - script: '%USERPROFILE%/.dotnet/tools/dotnet-cake -target=Pack'
+#   displayName: 'Build with Cake'
 
 - task: NuGetCommand@2
   displayName: 'NuGet push'
