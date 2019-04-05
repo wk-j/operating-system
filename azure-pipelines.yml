@@ -3,8 +3,8 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/vsts/pipelines/languages/dotnet-core
 
-# pool:
-#   vmImage: 'Ubuntu 16.04'
+pool:
+  vmImage: 'Ubuntu 16.04'
 
 # pool:
 #   vmImage: 'vs2017-win2016'
@@ -12,8 +12,8 @@
 # pool:
 #   vmImage: 'windows-2019'
 
-pool:
-  vmImage: 'macOS-10.13'
+# pool:
+#   vmImage: 'macOS-10.13'
 
 variables:
   buildConfiguration: 'Release'
