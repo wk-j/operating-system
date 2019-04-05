@@ -11,5 +11,8 @@ namespace OperatingSystem {
 
         public static bool IsLinux() =>
             RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+         public static string UserProfile() =>
+            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
     }
 }
